@@ -24,7 +24,6 @@ ENV PYTHONIOENCODING=utf-8
 
 # Run the bot
 CMD ["python", "-u", "main.py"]
----
 
 ## **3. `.dockerignore`**
 ```
@@ -73,3 +72,4 @@ README.md
 .DS_Store
 
 Thumbs.db
+
