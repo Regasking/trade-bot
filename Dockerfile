@@ -26,7 +26,7 @@ ENV PYTHONIOENCODING=utf-8
 CMD ["python", "-u", "main.py"]
 
 ## **3. `.dockerignore`**
-```
+
 # Python
 __pycache__/
 *.py[cod]
@@ -72,4 +72,5 @@ README.md
 .DS_Store
 
 Thumbs.db
+
 
