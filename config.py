@@ -24,11 +24,11 @@ class Config:
     
     # Trading
     SYMBOLS = ["BTCUSDT", "ETHUSDT", "SOLUSDT"]
-    TIMEFRAME = "4h"
+    TIMEFRAME = "1h"
     MAX_RISK_PERCENT = float(os.getenv("MAX_RISK_PERCENT", "2.0"))
     MAX_POSITIONS = int(os.getenv("MAX_POSITIONS", "2"))
     STOP_LOSS_PERCENT = float(os.getenv("STOP_LOSS_PERCENT", "3.0"))
-    CHECK_INTERVAL_HOURS = int(os.getenv("CHECK_INTERVAL_HOURS", "4"))
+    CHECK_INTERVAL_HOURS = int(os.getenv("CHECK_INTERVAL_HOURS", "1"))
     
     # URLs
     BINANCE_TESTNET_URL = "https://testnet.binance.vision"
