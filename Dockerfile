@@ -15,8 +15,8 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
-# Copy application code
-COPY main.py binance_client.py mistral_agent.py discord_bot.py config.py models.py ./
+# Copy application code (TOUS les fichiers)
+COPY main.py binance_client.py mistral_agent.py discord_bot.py config.py models.py market_analyzer.py position_manager.py strategy_optimizer.py ./
 
 # Set environment variables
 ENV PYTHONUNBUFFERED=1
