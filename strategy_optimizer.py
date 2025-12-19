@@ -70,7 +70,7 @@ class StrategyOptimizer:
             }
         
         # Décision finale
-        should_trade = score >= 5  # Seuil: 5 points minimum
+        should_trade = score >= 4  # Seuil: 5 points minimum
         
         return {
             'should_trade': should_trade,
