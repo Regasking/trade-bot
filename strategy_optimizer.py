@@ -14,7 +14,7 @@ class StrategyOptimizer:
         self.min_score = TRADE_THRESHOLD  # Utilise la variable env
         logger.info(f"🎯 Seuil de trading configuré: {self.min_score}/10")
     
-    def decide_trade(self, symbol: str, multi_tf: dict, mistral: dict, sentiment: dict) -> dict:
+    def should_trade(self, symbol: str, multi_tf: dict, mistral: dict, sentiment: dict) -> dict:
         """
         Décide si on doit trader basé sur tous les signaux
         
@@ -87,15 +87,15 @@ class StrategyOptimizer:
             reasons.append(f"Sentiment: EXTREME_GREED {sentiment_value} (-1)")
         
         # Décision finale
-        should_trade = score >= TRADE_THRESHOLD
+        should_trade_decision = score >= TRADE_THRESHOLD
         
         result = {
-            'should_trade': should_trade,
+            'should_trade': should_trade_decision,
             'score': score,
             'reasons': reasons
         }
         
-        if should_trade:
+        if should_trade_decision:
             logger.info(f"✅ Trade validé pour {symbol}! Score: {score}/{TRADE_THRESHOLD}")
             for reason in reasons:
                 logger.info(f"  └─ {reason}")
