@@ -14,9 +14,16 @@ class StrategyOptimizer:
         self.min_score = TRADE_THRESHOLD  # Utilise la variable env
         logger.info(f"🎯 Seuil de trading configuré: {self.min_score}/10")
     
-    def should_trade(self, symbol: str, multi_tf: dict, mistral: dict, sentiment: dict) -> dict:
+    def should_trade(self, symbol: str, multi_tf: dict, mistral: dict, sentiment: dict, market_trend: str = "SIDEWAYS") -> dict:
         """
         Décide si on doit trader basé sur tous les signaux
+        
+        Args:
+            symbol: Symbole tradé (ex: BTCUSDT)
+            multi_tf: Analyse multi-timeframe
+            mistral: Analyse Mistral AI
+            sentiment: Fear & Greed Index
+            market_trend: Tendance marché (BULL/BEAR/SIDEWAYS)
         
         Returns:
             dict: {
@@ -85,6 +92,13 @@ class StrategyOptimizer:
         else:  # EXTREME_GREED
             score -= 1  # Risque de correction
             reasons.append(f"Sentiment: EXTREME_GREED {sentiment_value} (-1)")
+        
+        # 4. Market Trend (bonus si aligné)
+        if market_trend == 'BULL' and mistral_action == 'BUY':
+            score += 1
+            reasons.append(f"Market Trend: BULL aligné (+1)")
+        elif market_trend == 'SIDEWAYS':
+            reasons.append(f"Market Trend: SIDEWAYS (0)")
         
         # Décision finale
         should_trade_decision = score >= TRADE_THRESHOLD
